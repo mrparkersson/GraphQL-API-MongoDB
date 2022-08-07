@@ -15,8 +15,8 @@ const typeDefs = gql`
 
   type Memo {
     id: ID
-    title: string
-    description: sting
+    title: String
+    description: String
   }
 
   type Query {
@@ -34,8 +34,8 @@ const typeDefs = gql`
     deletePost(id: ID): String
     createNewUser(username: String, password: String): User
     deleteUserById(id: ID): String
-    createNewMemo(title: string, description: string): Memo
-    deleteMemoById(id: ID): string
+    createNewMemo(title: String, description: String): Memo
+    deleteMemoById(id: ID): String
   }
 `;
 
