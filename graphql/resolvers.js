@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import Post from '../models/Post.model.js';
 import User from '../models/User.model.js';
+import Memo from '../models/Memo.model';
 
 const resolvers = {
   Query: {
@@ -21,6 +22,13 @@ const resolvers = {
       const { id } = args;
       return await User.findById(id);
     },
+    getAllMemo: async () => {
+      return await Memo.find({});
+    },
+    getMemoById: async (_, args, __) => {
+      const { id } = args;
+      return await Memo.findById(id);
+    },
   },
 
   Mutation: {
@@ -34,7 +42,8 @@ const resolvers = {
     },
     deletePost: async (_, args, __) => {
       const { id } = args;
-      return await Post.findByIdAndDelete(id);
+      await Post.findByIdAndDelete(id);
+      return `Post with id: ${id} delelted successfully`;
     },
     createNewUser: async (_, args, __) => {
       const { username, password } = args;
@@ -54,7 +63,22 @@ const resolvers = {
     },
     deleteUserById: async (_, args, __) => {
       const { id } = args;
-      return await User.findByIdAndDelete(id);
+      await User.findByIdAndDelete(id);
+      return `User with id: ${id} deleted successfully`;
+    },
+    createNewMemo: async (_, args, __) => {
+      const { title, description } = args;
+      const newMemo = {
+        title,
+        description,
+      };
+
+      return await Memo.create(newMemo);
+    },
+    deleteMemoById: async (_, args, __) => {
+      const { id } = args;
+      await Memo.findByIdAndDelete(id);
+      return `Memo with id: ${id} deleted successfully`;
     },
   },
 };
