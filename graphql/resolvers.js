@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import Post from '../models/Post.model.js';
 import User from '../models/User.model.js';
-import Memo from '../models/Memo.model';
+import Memo from '../models/Memo.model.js';
 
 const resolvers = {
   Query: {
